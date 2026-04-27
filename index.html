@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Joshua Ugbeye — Snr Product Designer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --cream:       #F3EDE3;
+    --cream-2:     #EDE5D8;
+    --cream-3:     #E4D9C9;
+    --sand:        #C2A882;
+    --sand-light:  #D9C7AC;
+    --text:        #1A1714;
+    --text-muted:  #7A7370;
+    --text-faint:  #B0A89E;
+    --accent:      #9B7A52;
+    --border:      rgba(160,140,120,0.25);
+    --border-med:  rgba(160,140,120,0.45);
+    --serif:       'Cormorant Garamond', Georgia, serif;
+    --sans:        'DM Sans', system-ui, sans-serif;
+    --ease-out:    cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--sans);
+    background-color: var(--cream);
+    color: var(--text);
+    font-size: 15px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  /* Grain overlay */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+    opacity: 0.028;
+    pointer-events: none;
+    z-index: 9999;
+  }
+
+  /* ─── Navigation ─── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 24px 48px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: background 0.4s, backdrop-filter 0.4s;
+  }
+  nav.scrolled {
+    background: rgba(243,237,227,0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+  .nav-logo {
+    font-family: var(--serif);
+    font-size: 18px;
+    font-weight: 400;
+    letter-spacing: 0.02em;
+    color: var(--text);
+    text-decoration: none;
+  }
+  .nav-links {
+    display: flex;
+    gap: 36px;
+    list-style: none;
+  }
+  .nav-links a {
+    font-size: 13px;
+    font-weight: 400;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--text); }
+
+  /* ─── Hero ─── */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 0 48px 80px;
+    position: relative;
+  }
+  .hero-eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 16px;
+    opacity: 0;
+    transform: translateY(16px);
+    animation: fadeUp 0.7s var(--ease-out) 0.2s forwards;
+  }
+  .availability-dot {
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    background: #7AB87A;
+    animation: pulse 2.5s ease-in-out infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+  }
+  .availability-text {
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+  .hero-heading {
+    font-family: var(--serif);
+    font-size: clamp(52px, 8vw, 108px);
+    font-weight: 300;
+    line-height: 1.02;
+    letter-spacing: -0.01em;
+    color: var(--text);
+    max-width: 900px;
+    opacity: 0;
+    transform: translateY(24px);
+    animation: fadeUp 0.9s var(--ease-out) 0.4s forwards;
+  }
+  .hero-heading em {
+    font-style: italic;
+    color: var(--accent);
+  }
+  .hero-meta {
+    margin-top: 40px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    opacity: 0;
+    animation: fadeUp 0.7s var(--ease-out) 0.7s forwards;
+  }
+  .hero-descriptor {
+    font-size: 15px;
+    color: var(--text-muted);
+    max-width: 340px;
+    line-height: 1.7;
+  }
+  .hero-scroll {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-faint);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .hero-scroll:hover { color: var(--text-muted); }
+  .scroll-line {
+    width: 40px; height: 1px;
+    background: var(--text-faint);
+    transition: width 0.3s var(--ease-out);
+  }
+  .hero-scroll:hover .scroll-line { width: 60px; }
+
+  /* ─── Section base ─── */
+  section { padding: 100px 48px; }
+
+  .section-label {
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--text-faint);
+    margin-bottom: 56px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .section-label::before {
+    content: '';
+    display: block;
+    width: 28px; height: 1px;
+    background: var(--text-faint);
+  }
+
+  /* ─── Work section ─── */
+  #work { border-top: 1px solid var(--border); }
+
+  .projects-grid { display: flex; flex-direction: column; gap: 0; }
+
+  .project-item {
+    display: grid;
+    grid-template-columns: 80px 1fr auto;
+    align-items: start;
+    gap: 32px;
+    padding: 44px 0;
+    border-bottom: 1px solid var(--border);
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: padding-left 0.4s var(--ease-out);
+  }
+  .project-item::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 0;
+    background: var(--cream-2);
+    transition: width 0.4s var(--ease-out);
+    z-index: 0;
+  }
+  .project-item:hover::before { width: 100%; }
+  .project-item:hover { padding-left: 20px; }
+  .project-item > * { position: relative; z-index: 1; }
+
+  .project-num {
+    font-family: var(--serif);
+    font-size: 13px;
+    font-weight: 400;
+    color: var(--text-faint);
+    letter-spacing: 0.05em;
+    padding-top: 4px;
+  }
+  .project-body { flex: 1; }
+  .project-tags {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 12px;
+  }
+  .tag {
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    background: var(--cream-3);
+    padding: 4px 10px;
+    border-radius: 100px;
+    border: 1px solid var(--border-med);
+  }
+  .project-title {
+    font-family: var(--serif);
+    font-size: clamp(28px, 3.5vw, 44px);
+    font-weight: 300;
+    line-height: 1.1;
+    color: var(--text);
+    margin-bottom: 14px;
+    letter-spacing: -0.01em;
+  }
+  .project-desc {
+    font-size: 14px;
+    color: var(--text-muted);
+    max-width: 480px;
+    line-height: 1.7;
+  }
+  .project-arrow {
+    font-size: 22px;
+    color: var(--text-faint);
+    padding-top: 8px;
+    transition: transform 0.3s var(--ease-out), color 0.3s;
+  }
+  .project-item:hover .project-arrow {
+    transform: translate(4px, -4px);
+    color: var(--accent);
+  }
+
+  /* ─── About ─── */
+  #about {
+    border-top: 1px solid var(--border);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: start;
+  }
+
+  .about-left {}
+  .about-heading {
+    font-family: var(--serif);
+    font-size: clamp(36px, 5vw, 64px);
+    font-weight: 300;
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+    margin-bottom: 32px;
+  }
+  .about-heading em { font-style: italic; color: var(--accent); }
+  .about-bio {
+    font-size: 15px;
+    color: var(--text-muted);
+    line-height: 1.8;
+    margin-bottom: 20px;
+    max-width: 420px;
+  }
+
+  .about-right { padding-top: 60px; }
+  .skills-block { margin-bottom: 40px; }
+  .skills-label {
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-faint);
+    margin-bottom: 16px;
+  }
+  .skills-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .skill-item {
+    font-size: 13px;
+    color: var(--text-muted);
+    padding: 6px 14px;
+    border: 1px solid var(--border-med);
+    border-radius: 100px;
+    background: transparent;
+    transition: background 0.2s, color 0.2s;
+  }
+  .skill-item:hover {
+    background: var(--cream-3);
+    color: var(--text);
+  }
+
+  .photo-placeholder {
+    width: 100%;
+    aspect-ratio: 4/5;
+    background: var(--cream-3);
+    border-radius: 4px;
+    border: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 40px;
+    overflow: hidden;
+    position: relative;
+  }
+  .photo-placeholder::after {
+    content: 'Photo';
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-faint);
+  }
+  .photo-inner {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(160deg, var(--cream-2) 0%, var(--cream-3) 100%);
+    opacity: 0.6;
+  }
+
+  /* ─── Contact / Footer ─── */
+  footer {
+    padding: 80px 48px 60px;
+    border-top: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+  .contact-left {}
+  .contact-heading {
+    font-family: var(--serif);
+    font-size: clamp(36px, 5vw, 72px);
+    font-weight: 300;
+    line-height: 1.05;
+    letter-spacing: -0.01em;
+    margin-bottom: 28px;
+  }
+  .contact-heading em { font-style: italic; color: var(--accent); }
+  .contact-links {
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+  .contact-link {
+    font-size: 13px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: color 0.2s;
+    border-bottom: 1px solid var(--border-med);
+    padding-bottom: 2px;
+  }
+  .contact-link:hover { color: var(--text); border-color: var(--text-muted); }
+
+  .footer-right {
+    text-align: right;
+  }
+  .footer-copy {
+    font-size: 12px;
+    color: var(--text-faint);
+    letter-spacing: 0.04em;
+  }
+
+  /* ─── Animations ─── */
+  @keyframes fadeUp {
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.7s var(--ease-out), transform 0.7s var(--ease-out);
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: none;
+  }
+
+  /* ─── Mobile ─── */
+  @media (max-width: 768px) {
+    nav { padding: 20px 24px; }
+    .hero { padding: 0 24px 60px; }
+    section { padding: 72px 24px; }
+    #about {
+      grid-template-columns: 1fr;
+      gap: 48px;
+    }
+    .about-right { padding-top: 0; }
+    .project-item {
+      grid-template-columns: 48px 1fr auto;
+      gap: 16px;
+    }
+    footer { padding: 64px 24px 48px; flex-direction: column; gap: 40px; align-items: flex-start; }
+    .nav-links { gap: 24px; }
+    .hero-meta { flex-direction: column; align-items: flex-start; gap: 24px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Navigation -->
+<nav id="nav">
+  <a href="#" class="nav-logo">Joshua Ugbeye</a>
+  <ul class="nav-links">
+    <li><a href="#work">Work</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="hero-eyebrow">
+    <span class="availability-dot"></span>
+    <span class="availability-text">Available for new projects</span>
+  </div>
+  <h1 class="hero-heading">
+    Designing products<br>that <em>feel</em> as good<br>as they work.
+  </h1>
+  <div class="hero-meta">
+    <p class="hero-descriptor">
+      Product designer focused on turning complex problems into clear, 
+      human-centred experiences — from first principle to final pixel.
+    </p>
+    <a href="#work" class="hero-scroll">
+      <span class="scroll-line"></span>
+      Selected work
+    </a>
+  </div>
+</section>
+
+<!-- Work -->
+<section id="work">
+  <div class="section-label">Selected Work</div>
+  <div class="projects-grid">
+
+    <a class="project-item reveal" href="#" tabindex="0">
+      <span class="project-num">01</span>
+      <div class="project-body">
+        <div class="project-tags">
+          <span class="tag">Product Design</span>
+          <span class="tag">Mobile</span>
+        </div>
+        <h2 class="project-title">Project Title One</h2>
+        <p class="project-desc">
+          Brief description of the project — what problem it solved, who it was for, and the outcome. One or two sentences is enough.
+        </p>
+      </div>
+      <span class="project-arrow">↗</span>
+    </a>
+
+    <a class="project-item reveal" href="#" tabindex="0">
+      <span class="project-num">02</span>
+      <div class="project-body">
+        <div class="project-tags">
+          <span class="tag">UX Strategy</span>
+          <span class="tag">Web</span>
+          <span class="tag">0→1</span>
+        </div>
+        <h2 class="project-title">Project Title Two</h2>
+        <p class="project-desc">
+          Brief description of the project — what problem it solved, who it was for, and the outcome. One or two sentences is enough.
+        </p>
+      </div>
+      <span class="project-arrow">↗</span>
+    </a>
+
+    <a class="project-item reveal" href="#" tabindex="0">
+      <span class="project-num">03</span>
+      <div class="project-body">
+        <div class="project-tags">
+          <span class="tag">Design System</span>
+          <span class="tag">B2B SaaS</span>
+        </div>
+        <h2 class="project-title">Project Title Three</h2>
+        <p class="project-desc">
+          Brief description of the project — what problem it solved, who it was for, and the outcome. One or two sentences is enough.
+        </p>
+      </div>
+      <span class="project-arrow">↗</span>
+    </a>
+
+  </div>
+</section>
+
+<!-- About -->
+<section id="about">
+  <div class="about-left reveal">
+    <div class="section-label">About</div>
+    <h2 class="about-heading">
+      Turning clarity<br>into <em>craft.</em>
+    </h2>
+    <p class="about-bio">
+      I'm a product designer with [X] years of experience working across fintech, 
+      consumer apps, and B2B SaaS. I care about the work that lives between 
+      strategy and execution — where good thinking meets good design.
+    </p>
+    <p class="about-bio">
+      Previously at [Company A] and [Company B]. Currently open to full-time 
+      roles and select contract projects.
+    </p>
+
+    <div class="skills-block" style="margin-top: 40px;">
+      <p class="skills-label">Skills</p>
+      <div class="skills-list">
+        <span class="skill-item">Product Strategy</span>
+        <span class="skill-item">Interaction Design</span>
+        <span class="skill-item">UX Research</span>
+        <span class="skill-item">Design Systems</span>
+        <span class="skill-item">Prototyping</span>
+        <span class="skill-item">Visual Design</span>
+      </div>
+    </div>
+
+    <div class="skills-block">
+      <p class="skills-label">Tools</p>
+      <div class="skills-list">
+        <span class="skill-item">Figma</span>
+        <span class="skill-item">Framer</span>
+        <span class="skill-item">Notion</span>
+        <span class="skill-item">Maze</span>
+        <span class="skill-item">Lottie</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="about-right reveal">
+    <div class="photo-placeholder">
+      <div class="photo-inner"></div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer / Contact -->
+<footer id="contact">
+  <div class="contact-left reveal">
+    <h2 class="contact-heading">
+      Let's work<br><em>together.</em>
+    </h2>
+    <div class="contact-links">
+      <a href="mailto:hello@yourname.com" class="contact-link">
+        ✉ hello@yourname.com
+      </a>
+      <a href="https://linkedin.com/in/yourprofile" target="_blank" class="contact-link">
+        LinkedIn
+      </a>
+      <a href="https://twitter.com/yourhandle" target="_blank" class="contact-link">
+        Twitter / X
+      </a>
+      <a href="/resume.pdf" target="_blank" class="contact-link">
+        Résumé ↓
+      </a>
+    </div>
+  </div>
+  <div class="footer-right">
+    <p class="footer-copy">© 2025 Your Name</p>
+    <p class="footer-copy" style="margin-top: 4px;">Lagos, Nigeria</p>
+  </div>
+</footer>
+
+<script>
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 40);
+  });
+
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        const el = entry.target;
+        const siblings = [...el.parentElement.querySelectorAll('.reveal')];
+        const idx = siblings.indexOf(el);
+        el.style.transitionDelay = (idx * 0.1) + 's';
+        el.classList.add('visible');
+        observer.unobserve(el);
+      }
+    });
+  }, { threshold: 0.08 });
+
+  reveals.forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
