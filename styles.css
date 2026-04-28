@@ -5,15 +5,15 @@
 }
 
 :root {
-  --cream: #F3EDE3;
-  --cream-2: #EDE5D8;
-  --cream-3: #E4D9C9;
-  --sand: #C2A882;
-  --sand-light: #D9C7AC;
-  --text: #1A1714;
-  --text-muted: #7A7370;
-  --text-faint: #B0A89E;
-  --accent: #9B7A52;
+  --background: #F2F2F2;
+  --background-2: #E8E8E8;
+  --background-3: #CCCCCC;
+  --sand: #A5A5A5;
+  --sand-light: #CCCCCC;
+  --text: #070707;
+  --text-muted: #40434E;
+  --text-faint: #A5A5A5;
+  --accent: #F55D3E;
   --border: rgba(160, 140, 120, 0.25);
   --border-med: rgba(160, 140, 120, 0.45);
   --serif: 'Cormorant Garamond', Georgia, serif;
