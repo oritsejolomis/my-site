@@ -5,10 +5,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Joshua Ugbeye — Snr Product Designer</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://api.fontshare.com">
   <link
-    href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Karla:wght@300;400;500&display=swap"
+    href="https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500,700,900&display=swap"
     rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 </head>
@@ -35,15 +34,16 @@
         <img src="profile-photo.jpg" alt="Joshua Ugbeye">
       </div>
       <div class="hero-info">
+        <span class="hero-status">
+          <span class="status-dot"></span>
+          Available to work
+        </span>
         <h1 class="hero-name">Joshua Ugbeye</h1>
         <p class="hero-tagline">Hello, I'm Joshua — a Product Designer &amp; Design Engineer, crafting digital
           experiences in startup environments for 5+ years.</p>
         <p class="hero-bio">My modus operandi is turning complex problems into clear, human-centred experiences — from
           first principle to final pixel.</p>
-        <span class="hero-status">
-          <span class="status-dot"></span>
-          Available to work
-        </span>
+        
         <div class="hero-socials">
           <a href="mailto:ugbeyejoshua@gmail.com">Email</a>
           <a href="https://x.com/@oritsejoloms" target="_blank" rel="noreferrer">Twitter</a>
@@ -54,7 +54,7 @@
 
     <!-- ABOUT -->
     <section id="about" class="about-section">
-      <p class="section-heading">About me</p>
+      <p class="section-heading">About joshua</p>
       <div class="about-grid">
         <!-- Top Left: Note Card -->
         <article class="about-card about-card--note">
@@ -72,31 +72,33 @@
           </div>
         </article>
 
+        <!-- Welcome Card -->
+        <article class="about-card about-card--welcome">
+          <div>
+            <p class="welcome-label">WELCOME</p>
+            <h3 class="welcome-title">Hello, I'm Joshua</h3>
+            <p class="welcome-subtitle">Product designer crafting digital experiences</p>
+            <a href="#about" class="welcome-link">Learn more →</a>
+          </div>
+        </article>
+
+        <!-- Favorite Card -->
+        <article class="about-card about-card--favorite">
+          <div>
+            <p class="favorite-label">FAVORITE</p>
+            <h3 class="favorite-title">Design Tools</h3>
+            <p class="favorite-subtitle">Figma, Sketch, Adobe Creative Suite</p>
+            <a href="#projects" class="favorite-link">View work →</a>
+          </div>
+        </article>
+
         <!-- Top Right: Photo Card (spans 2 rows) -->
         <article class="about-card about-card--photo">
           <img src="profile-photo.jpg" alt="Joshua Ugbeye" />
           <p class="photo-caption">Joshua Ugbeye</p>
         </article>
 
-        <!-- Bottom Left: Welcome Card -->
-        <article class="about-card about-card--welcome">
-          <div>
-            <p class="welcome-title">Welcome to my<br>corner on the<br>internet :)</p>
-            <p class="welcome-link">My journey →</p>
-          </div>
-        </article>
-
-        <!-- Bottom Center: Favorite Card -->
-        <article class="about-card about-card--favorite">
-          <div>
-            <p class="favorite-label">RECENT FAVORITE MUSIC ALBUM</p>
-            <p class="favorite-title">$Money</p>
-            <p class="favorite-subtitle">Asake</p>
-            <a href="#" class="favorite-link">View Track →</a>
-          </div>
-        </article>
-
-        <!-- Bottom Right: Learning Card (spans 2 columns) -->
+        <!-- Bottom Left: Learning Card (spans 2 columns) -->
         <article class="about-card about-card--learning">
           <div>
             <p class="learning-title">Constantly Learning</p>
@@ -106,11 +108,11 @@
           </div>
         </article>
 
-        <!-- Bottom Left Alt: Building Card -->
+        <!-- Bottom Right: Building Card -->
         <article class="about-card about-card--building">
           <div>
             <p class="building-title">Building scalable &amp; performant web applications</p>
-            <p class="building-copy">I work across React, TypeScript, and modern backend stacks t...</p>
+            <p class="building-copy">I work across React, TypeScript, and modern backend stacks to create user-centered digital experiences.</p>
             <a href="#" class="building-link">Read my logs →</a>
           </div>
         </article>
@@ -191,26 +193,12 @@
     <!-- SERVICES -->
     <section id="services" class="services-section">
       <p class="section-heading">Services</p>
-      <div class="services-card">
-        <div class="services-inner">
-          <div class="services-left">
-            <p class="services-title">What I can<br>do for you</p>
-            <p class="services-desc">From strategy to shipped product — I work across the full design and build stack.
-            </p>
-          </div>
-          <div class="services-right">
-            <div class="services-pills">
-              <span class="service-pill">→ Product Design</span>
-              <span class="service-pill">→ Branding</span>
-              <span class="service-pill">→ UX Research</span>
-              <span class="service-pill">→ Design Systems</span>
-              <span class="service-pill">→ Interaction Design</span>
-              <span class="service-pill">→ Front-end Development</span>
-              <span class="service-pill">→ Prototyping</span>
-              <span class="service-pill">→ Motion Design</span>
-            </div>
-          </div>
-        </div>
+      <div class="services-pile">
+        <span class="svc-tag" id="svc-1">✧ branding</span>
+        <span class="svc-tag" id="svc-2">⚲ interface</span>
+        <span class="svc-tag" id="svc-3">⨁ website</span>
+        <span class="svc-tag" id="svc-4">⚡ animation</span>
+        <span class="svc-tag" id="svc-5">✑ illustration</span>
       </div>
     </section>
 
@@ -229,6 +217,8 @@
     </footer>
 
   </div><!-- end .wrapper -->
+
+</div>
 
 </body>
 

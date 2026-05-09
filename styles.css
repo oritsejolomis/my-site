@@ -43,8 +43,8 @@
   --radius-sm: 10px;
   --radius-md: 16px;
   --radius-lg: 24px;
-  --sans: 'Karla', system-ui, sans-serif;
-  --display: 'Syne', sans-serif;
+  --sans: 'Satoshi', system-ui, sans-serif;
+  --display: 'Satoshi', system-ui, sans-serif;
   --section-gap: 80px;
 }
 
@@ -190,7 +190,7 @@ nav {
 .hero-name {
   font-family: var(--display);
   font-size: 28px;
-  font-weight: 700;
+  font-weight: 500;
   color: var(--text);
   letter-spacing: -0.02em;
   margin-bottom: 8px;
@@ -205,8 +205,8 @@ nav {
 }
 
 .hero-bio {
-  font-size: 13.5px;
-  color: var(--text-muted);
+  font-size: 14px;
+  color: var(--text-mid);
   line-height: 1.7;
   max-width: 440px;
   margin-bottom: 14px;
@@ -273,11 +273,11 @@ nav {
 /* ─── 6. ABOUT / BENTO ─── */
 .section-heading {
   font-family: var(--display);
-  font-size: 13px;
+  font-size: 16px;
   font-weight: 600;
   letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--text-muted);
+  text-transform: sentence-case;
+  color: var(--text);
   margin-bottom: 12px;
   padding-left: 4px;
 }
@@ -288,8 +288,7 @@ nav {
 
 .about-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  grid-template-rows: repeat(3, auto);
+  grid-template-columns: 1fr 1fr 1fr;
   gap: 12px;
   align-items: stretch;
 }
@@ -400,23 +399,41 @@ nav {
 }
 
 .about-card--welcome {
-  background: #9BCC90;
-  color: var(--black);
+  background: #FFFFFF;
+  border: 1px solid #E0E0E0;
   justify-content: flex-start;
+}
+
+.welcome-label {
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #4CAF50;
+  margin-bottom: 10px;
+  font-weight: 700;
 }
 
 .welcome-title {
   font-family: var(--display);
-  font-size: 20px;
-  line-height: 1.3;
-  margin-bottom: 16px;
+  font-size: 18px;
+  margin-bottom: 4px;
   font-weight: 700;
+  color: var(--black);
+}
+
+.welcome-subtitle {
+  color: var(--text-mid);
+  margin-bottom: 12px;
+  font-size: 13px;
 }
 
 .welcome-link {
-  font-size: 13px;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 12px;
   font-weight: 700;
-  color: var(--black);
+  color: #4CAF50;
   text-decoration: none;
   margin-top: auto;
 }
@@ -464,7 +481,7 @@ nav {
 .about-card--learning {
   background: #3C2A20;
   color: #E8DCC8;
-  grid-column: 2 / 4;
+  grid-column: span 2;
   grid-row: 3;
   min-height: 180px;
 }
@@ -764,67 +781,115 @@ nav {
   margin-bottom: var(--section-gap);
 }
 
-.services-card {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-lg);
-  padding: 32px;
+/* The pile container — absolute-positioned children need this */
+.services-pile {
+  position: relative;
+  min-height: 460px;
+  width: 100%;
 }
 
-.services-inner {
-  display: flex;
-  gap: 40px;
-  align-items: flex-start;
-}
-
-.services-left {
-  flex: 0 0 200px;
-}
-
-.services-title {
-  font-family: var(--display);
-  font-size: 22px;
-  font-weight: 700;
-  color: var(--text);
-  letter-spacing: -0.02em;
-  margin-bottom: 10px;
-  line-height: 1.25;
-}
-
-.services-desc {
-  font-size: 13px;
-  color: var(--text-muted);
-  line-height: 1.65;
-}
-
-.services-right {
-  flex: 1;
-}
-
-.services-pills {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-}
-
-.service-pill {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  font-size: 13px;
+/* Base tag style */
+.svc-tag {
+  position: absolute;
+  border-radius: 999px;
+  font-family: var(--sans);
+  /* Use the sans font for a cleaner look */
   font-weight: 500;
-  color: var(--text-mid);
-  background: var(--surface-2);
-  border: 1px solid var(--border);
-  padding: 9px 16px;
-  border-radius: 100px;
-  transition: background 0.2s, border-color 0.2s, color 0.2s;
+  white-space: nowrap;
+  padding: 12px 32px;
+  font-size: 32px;
+  line-height: 1.2;
+  border: 2px solid var(--black);
+  /* Distinct outline */
+  box-shadow: 4px 6px 0px rgba(0, 0, 0, 0.1);
+  /* Hard shadow for illustrated feel */
+  will-change: transform;
+  cursor: default;
 }
 
-.service-pill:hover {
-  background: var(--black);
-  border-color: var(--black);
-  color: #fff;
+/* ── Individual tag: color / size / position / rotation / z-index ── */
+
+#svc-1 {
+  /* Branding — light blue */
+  background: #D4EBFF;
+  color: #4A8FE7;
+  top: 20px;
+  left: 20%;
+  transform: rotate(-35deg);
+  z-index: 2;
+}
+
+#svc-2 {
+  /* Interface — mint green */
+  background: #CFF7D3;
+  color: #2F9E6B;
+  top: 70px;
+  left: 42%;
+  transform: rotate(12deg);
+  z-index: 1;
+}
+
+#svc-3 {
+  /* Website — lime green */
+  background: #E8F59C;
+  color: #8CA813;
+  top: 150px;
+  left: 30%;
+  transform: rotate(-6deg);
+  z-index: 3;
+}
+
+#svc-4 {
+  /* Animation — lavender */
+  background: #EED4FF;
+  color: #A242E6;
+  top: 220px;
+  left: 10%;
+  transform: rotate(10deg);
+  z-index: 4;
+}
+
+#svc-5 {
+  /* Illustration — peach/orange */
+  background: #FFEAC0;
+  color: #ED8B22;
+  top: 260px;
+  left: 45%;
+  transform: rotate(-15deg);
+  z-index: 5;
+}
+
+/* Hiding extra tags since the reference has fewer */
+#svc-6,
+#svc-7,
+#svc-8 {
+  display: none;
+}
+
+/* ── Mobile: collapse to flex-wrap with gentle tilts ── */
+@media (max-width: 768px) {
+  .services-pile {
+    position: static;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    min-height: auto;
+    padding-bottom: 8px;
+  }
+
+  .svc-tag {
+    position: static;
+    font-size: 18px !important;
+    padding: 12px 24px !important;
+  }
+
+  .svc-tag:nth-child(odd) {
+    transform: rotate(-2.5deg) !important;
+  }
+
+  .svc-tag:nth-child(even) {
+    transform: rotate(2.5deg) !important;
+  }
 }
 
 
@@ -882,6 +947,70 @@ footer {
 /* ─── 10. UTILITIES ─── */
 /* Add reusable helper classes here as the project grows */
 
+
+/* ─── 12. STICKERS ─── */
+
+/* Fixed overlay — sits above content but doesn't block clicks */
+#stickers-layer {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 50;
+  overflow: hidden;
+}
+
+/* Base sticker */
+.sticker {
+  position: absolute;
+  will-change: transform;
+  filter: drop-shadow(2px 6px 10px rgba(0, 0, 0, 0.14));
+}
+
+/* ── Positions & rotations — placed IN the viewport, not at edges ── */
+
+/* Orange-yellow: upper section, left of centre, tilted left */
+#sticker-a {
+  top: 18%;
+  left: 12%;
+  transform: rotate(-17deg);
+}
+
+/* Cyan-blue: mid page, right of centre, tilted right */
+#sticker-b {
+  top: 50%;
+  right: 8%;
+  transform: rotate(14deg);
+}
+
+/* Pink-magenta: lower section, left of centre, dramatic tilt */
+#sticker-c {
+  top: 74%;
+  left: 20%;
+  transform: rotate(-21deg);
+}
+
+/* ── Mobile: scale down, hide one ── */
+@media (max-width: 768px) {
+  #sticker-c {
+    display: none;
+  }
+
+  #sticker-a {
+    top: 12%;
+    left: 5%;
+    transform: rotate(-17deg) scale(0.75);
+    transform-origin: top left;
+  }
+
+  #sticker-b {
+    top: 52%;
+    right: 3%;
+    transform: rotate(14deg) scale(0.75);
+    transform-origin: top right;
+  }
+}
+
+}
 
 /* ─── 11. MOBILE ─── */
 @media (max-width: 768px) {
