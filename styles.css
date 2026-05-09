@@ -885,6 +885,15 @@ footer {
 
 /* ─── 11. MOBILE ─── */
 @media (max-width: 768px) {
+  :root {
+    --section-gap: 24px;
+  }
+
+  .wrapper {
+    padding: 16px;
+    padding-bottom: 100px;
+  }
+
   .hero-card {
     grid-template-columns: 1fr;
   }
