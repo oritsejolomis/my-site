@@ -863,8 +863,7 @@ nav {
 #svc-6,
 #svc-7,
 #svc-8 {
-  display: none;
-}
+  display: none;}
 
 /* ── Mobile: collapse to flex-wrap with gentle tilts ── */
 @media (max-width: 768px) {
