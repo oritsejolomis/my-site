@@ -1,36 +1,65 @@
-:root {
-  --bg: #0C0C0C;
-  --text: #D8D8D6;
-  --text-mid: #909090;
-  --text-muted: #585856;
-  --border: rgba(255, 255, 255, 0.07);
-  --toggle-bg: rgba(255, 255, 255, 0.06);
-  --toggle-border: rgba(255, 255, 255, 0.1);
-  --preview-surface: #161615;
-  --sans: 'DM Sans', system-ui, sans-serif;
-  --gap: 52px;
-}
+/* ─────────────────────────────────────────
+   JOSHUA UGBEYE — Portfolio
+   Dark. Minimal. Restrained.
 
+   1.  Reset
+   2.  Tokens
+   3.  Light mode
+   4.  Base
+   5.  Nav + Toggle
+   6.  Main layout
+   7.  Identity
+   8.  Featured (wipe transition)
+   9.  Bio
+   10. Rule
+   11. Work
+   12. Tools marquee
+   13. About
+   14. Connect
+   15. Footer
+   16. Animations
+   17. Mobile
+───────────────────────────────────────── */
+
+
+/* ─── 1. RESET ─── */
 *, *::before, *::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
+
+/* ─── 2. TOKENS ─── */
+:root {
+  --bg:              #0C0C0C;
+  --text:            #D8D8D6;
+  --text-mid:        #909090;
+  --text-muted:      #585856;
+  --border:          rgba(255, 255, 255, 0.07);
+  --toggle-bg:       rgba(255, 255, 255, 0.06);
+  --toggle-border:   rgba(255, 255, 255, 0.1);
+  --preview-surface: #161615;
+  --sans:            'DM Sans', system-ui, sans-serif;
+  --gap:             52px;
+}
+
+
+/* ─── 3. LIGHT MODE ─── */
 body.light {
-  --bg: #F5F5F3;
-  --text: #0C0C0C;
-  --text-mid: #3A3A38;
-  --text-muted: #888886;
-  --border: rgba(0, 0, 0, 0.08);
-  --toggle-bg: rgba(0, 0, 0, 0.05);
-  --toggle-border: rgba(0, 0, 0, 0.12);
+  --bg:              #F5F5F3;
+  --text:            #0C0C0C;
+  --text-mid:        #3A3A38;
+  --text-muted:      #888886;
+  --border:          rgba(0, 0, 0, 0.08);
+  --toggle-bg:       rgba(0, 0, 0, 0.05);
+  --toggle-border:   rgba(0, 0, 0, 0.12);
   --preview-surface: #E8E8E6;
 }
 
-html {
-  scroll-behavior: smooth;
-}
+
+/* ─── 4. BASE ─── */
+html { scroll-behavior: smooth; }
 
 body {
   font-family: var(--sans);
@@ -42,6 +71,8 @@ body {
   transition: background 0.3s ease, color 0.3s ease;
 }
 
+
+/* ─── 5. NAV + TOGGLE ─── */
 nav {
   position: fixed;
   top: 24px;
@@ -60,13 +91,20 @@ nav {
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: background 0.2s, color 0.2s;
 }
 
+.theme-toggle:hover {
+  color: var(--text);
+  background: var(--border);
+}
+
+/* Sun/moon icon drawn in CSS */
 .toggle-icon {
   position: relative;
   width: 13px;
   height: 13px;
-  border: 1px solid currentColor;
+  border: 1.5px solid currentColor;
   border-radius: 50%;
 }
 
@@ -77,20 +115,23 @@ nav {
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background: var(--toggle-bg);
+  background: var(--bg);
   opacity: 0;
+  transition: opacity 0.3s;
 }
 
-body.light .toggle-icon::after {
-  opacity: 1;
-}
+body.light .toggle-icon::after { opacity: 1; }
 
+
+/* ─── 6. MAIN LAYOUT ─── */
 main {
   max-width: 520px;
   margin: 0 auto;
   padding: 80px 24px 100px;
 }
 
+
+/* ─── 7. IDENTITY ─── */
 .identity {
   margin-bottom: 40px;
 }
@@ -98,6 +139,7 @@ main {
 .identity-name {
   font-size: 14px;
   font-weight: 500;
+  letter-spacing: 0.01em;
   margin-bottom: 3px;
 }
 
@@ -107,6 +149,8 @@ main {
   font-weight: 300;
 }
 
+
+/* ─── 8. FEATURED — wipe transition ─── */
 .featured {
   margin-bottom: 40px;
 }
@@ -116,26 +160,26 @@ main {
   width: 100%;
   aspect-ratio: 16 / 9;
   border-radius: 8px;
-  overflow: hidden;
-  background: #1A1A1A;
+  overflow: hidden;            /* clips the wipe at the edges */
+  background: #161616;
 }
 
+body.light .featured-slides {
+  background: #E0E0DE;
+}
+
+/* Every slide stacks on top of each other */
 .featured-slide {
   position: absolute;
   inset: 0;
-  opacity: 0;
-  animation: featured-loop 16s infinite;
+  /* Start clipped off to the right — invisible by default */
+  clip-path: inset(0 100% 0 0);
 }
 
-.featured-slide:nth-child(1) { animation-delay: 0s; }
-.featured-slide:nth-child(2) { animation-delay: 4s; }
-.featured-slide:nth-child(3) { animation-delay: 8s; }
-.featured-slide:nth-child(4) { animation-delay: 12s; }
-
-.slide-1 { background: #1E1E1E; }
-.slide-2 { background: #222220; }
-.slide-3 { background: #1C1C20; }
-.slide-4 { background: #201E1C; }
+/* Active slide is fully visible */
+.featured-slide.is-active {
+  clip-path: inset(0 0% 0 0);
+}
 
 .featured-slide img {
   width: 100%;
@@ -144,8 +188,9 @@ main {
   display: block;
 }
 
+
+/* ─── 9. BIO ─── */
 .bio,
-.tools,
 .about,
 .connect {
   margin-bottom: var(--gap);
@@ -157,21 +202,30 @@ main {
   gap: 14px;
 }
 
-.bio p,
-.about-body {
+.bio p {
   font-size: 14px;
   color: var(--text-mid);
   line-height: 1.8;
 }
 
-.about-body + .about-body {
-  margin-top: 14px;
-}
 
+/* ─── 10. RULE ─── */
 .rule {
   height: 1px;
   background: var(--border);
   margin-bottom: var(--gap);
+}
+
+
+/* ─── 11. WORK ─── */
+.work {
+  width: 100%;
+  margin-bottom: var(--gap);
+  min-height: 270px;
+}
+
+.work-heading {
+  margin-bottom: 28px;
 }
 
 .section-title {
@@ -183,16 +237,6 @@ main {
   margin-bottom: 20px;
 }
 
-.work {
-  width: 100%;
-  margin: 0 0 var(--gap);
-  min-height: 270px;
-}
-
-.work-heading {
-  margin-bottom: 28px;
-}
-
 .work-showcase {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(120px, 145px);
@@ -200,10 +244,7 @@ main {
   gap: 28px;
 }
 
-.folio-list {
-  list-style: none;
-  min-width: 0;
-}
+.folio-list { list-style: none; }
 
 .folio-item a {
   display: flex;
@@ -233,7 +274,6 @@ main {
   color: var(--text-mid);
   font-size: 9px;
   font-weight: 500;
-  line-height: 1.5;
   letter-spacing: 0.18em;
   text-transform: uppercase;
   transform: translateX(-6px);
@@ -246,6 +286,7 @@ main {
   transform: translateX(0);
 }
 
+/* Hover preview cards */
 .folio-preview {
   position: relative;
   min-height: 210px;
@@ -254,76 +295,63 @@ main {
 .folio-frame {
   position: absolute;
   inset: 50% auto auto 50%;
-  overflow: hidden;
   border: 1px solid var(--border);
   border-radius: 8px;
   background: var(--preview-surface);
+  overflow: hidden;
   opacity: 0;
   pointer-events: none;
-  transition: opacity 0.35s ease, transform 0.35s ease, filter 0.35s ease;
+  transition: opacity 0.35s ease, transform 0.35s ease;
 }
 
-.folio-frame::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background:
-    linear-gradient(135deg, rgba(255, 255, 255, 0.16), rgba(255, 255, 255, 0)),
-    repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.08) 0 1px, transparent 1px 52px);
-  opacity: 0.7;
-}
-
-.folio-frame span {
-  position: absolute;
-  left: 14px;
-  bottom: 13px;
-  color: rgba(255, 255, 255, 0.72);
-  font-size: 9px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-}
-
-.folio-frame.is-active,
-.folio-list:has(.folio-item:nth-child(1):hover) + .folio-preview .frame-1,
-.folio-list:has(.folio-item:nth-child(1):focus-within) + .folio-preview .frame-1,
-.folio-list:has(.folio-item:nth-child(2):hover) + .folio-preview .frame-2,
-.folio-list:has(.folio-item:nth-child(2):focus-within) + .folio-preview .frame-2,
-.folio-list:has(.folio-item:nth-child(3):hover) + .folio-preview .frame-3,
-.folio-list:has(.folio-item:nth-child(3):focus-within) + .folio-preview .frame-3,
-.folio-list:has(.folio-item:nth-child(4):hover) + .folio-preview .frame-4,
-.folio-list:has(.folio-item:nth-child(4):focus-within) + .folio-preview .frame-4 {
-  opacity: 1;
-  filter: saturate(1.1);
-  transform: translate(-50%, -50%) translateY(-4px) scale(1.01);
-  z-index: 5;
-}
-
+/* Each frame gets a slightly different size and tilt */
 .frame-1 {
   width: min(100%, 145px);
   aspect-ratio: 4 / 5;
-  background: #292822;
   transform: translate(-50%, -46%) rotate(1deg);
 }
 
 .frame-2 {
   width: min(100%, 140px);
   aspect-ratio: 4 / 5;
-  background: #182629;
   transform: translate(-50%, -46%) rotate(-1deg);
 }
 
 .frame-3 {
   width: min(100%, 150px);
   aspect-ratio: 4 / 5;
-  background: #2B2026;
   transform: translate(-50%, -46%) rotate(1.2deg);
 }
 
 .frame-4 {
   width: min(100%, 140px);
   aspect-ratio: 4 / 5;
-  background: #212334;
   transform: translate(-50%, -46%) rotate(-0.8deg);
+}
+
+.folio-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Active frame lifts and straightens */
+.folio-frame.is-active {
+  opacity: 1;
+  z-index: 5;
+  filter: saturate(1.1);
+}
+
+.frame-1.is-active { transform: translate(-50%, -50%) rotate(0deg) translateY(-4px) scale(1.01); }
+.frame-2.is-active { transform: translate(-50%, -50%) rotate(0deg) translateY(-4px) scale(1.01); }
+.frame-3.is-active { transform: translate(-50%, -50%) rotate(0deg) translateY(-4px) scale(1.01); }
+.frame-4.is-active { transform: translate(-50%, -50%) rotate(0deg) translateY(-4px) scale(1.01); }
+
+
+/* ─── 12. TOOLS MARQUEE ─── */
+.tools {
+  margin-bottom: var(--gap);
 }
 
 .tools-marquee {
@@ -368,6 +396,10 @@ main {
   white-space: nowrap;
 }
 
+body.light .tool-item {
+  background: rgba(0, 0, 0, 0.025);
+}
+
 .tool-item img {
   width: 16px;
   height: 16px;
@@ -375,6 +407,20 @@ main {
   opacity: 0.82;
 }
 
+
+/* ─── 13. ABOUT ─── */
+.about-body {
+  font-size: 14px;
+  color: var(--text-mid);
+  line-height: 1.8;
+}
+
+.about-body + .about-body {
+  margin-top: 14px;
+}
+
+
+/* ─── 14. CONNECT ─── */
 .connect-list {
   list-style: none;
   display: flex;
@@ -404,11 +450,10 @@ main {
   color: var(--text-mid);
   font-size: 13px;
   text-decoration: none;
+  transition: color 0.2s;
 }
 
-.connect-copy-row a:hover {
-  color: var(--text);
-}
+.connect-copy-row a:hover { color: var(--text); }
 
 .connect-icon-row a {
   width: 38px;
@@ -421,6 +466,11 @@ main {
   background: rgba(255, 255, 255, 0.025);
   color: var(--text-mid);
   text-decoration: none;
+  transition: color 0.2s, background 0.2s, border-color 0.2s, transform 0.2s;
+}
+
+body.light .connect-icon-row a {
+  background: rgba(0, 0, 0, 0.025);
 }
 
 .connect-icon-row a:hover {
@@ -449,36 +499,32 @@ main {
   border: 0;
 }
 
+
+/* ─── 15. FOOTER ─── */
 footer p {
   font-size: 11px;
   color: var(--text-muted);
   letter-spacing: 0.04em;
 }
 
+
+/* ─── 16. ANIMATIONS ─── */
 @keyframes tools-loop {
   from { transform: translateX(0); }
-  to { transform: translateX(-50%); }
+  to   { transform: translateX(-50%); }
 }
 
-@keyframes featured-loop {
-  0%, 100% { opacity: 0; }
-  6%, 25% { opacity: 1; }
-  31% { opacity: 0; }
-}
 
+/* ─── 17. MOBILE ─── */
 @media (max-width: 860px) {
-  .work {
-    min-height: 0;
-  }
+  .work { min-height: 0; }
 
   .work-showcase {
     grid-template-columns: 1fr;
     gap: 26px;
   }
 
-  .folio-preview {
-    display: none;
-  }
+  .folio-preview { display: none; }
 }
 
 @media (max-width: 600px) {
@@ -491,9 +537,7 @@ footer p {
     right: 20px;
   }
 
-  .work-heading {
-    margin-bottom: 24px;
-  }
+  .work-heading { margin-bottom: 24px; }
 
   .folio-item a {
     gap: 6px;
@@ -506,7 +550,6 @@ footer p {
   }
 
   .folio-meta {
-    max-width: 260px;
     opacity: 1;
     transform: none;
   }
@@ -514,11 +557,12 @@ footer p {
 
 @media (prefers-reduced-motion: reduce) {
   .featured-slide {
-    animation: none;
+    clip-path: none !important;
+    transition: none !important;
   }
 
-  .featured-slide:first-child {
-    opacity: 1;
+  .featured-slide:not(.is-active) {
+    display: none;
   }
 
   .tools-track {
