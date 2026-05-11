@@ -159,7 +159,7 @@ main {
 
 .bio p,
 .about-body {
-  font-size: 13.5px;
+  font-size: 14px;
   color: var(--text-mid);
   line-height: 1.8;
 }
