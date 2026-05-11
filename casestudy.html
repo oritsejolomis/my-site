@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Filmmakers Mart — Case Study · Joshua Ugbeye</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+  <style>
+    /* ─── RESET ─── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    /* ─── TOKENS (mirrors index) ─── */
+    :root {
+      --bg:              #0C0C0C;
+      --text:            #D8D8D6;
+      --text-mid:        #909090;
+      --text-muted:      #585856;
+      --border:          rgba(255,255,255,0.07);
+      --toggle-bg:       rgba(255,255,255,0.06);
+      --toggle-border:   rgba(255,255,255,0.1);
+      --surface:         #111110;
+      --surface-raised:  #161615;
+      --accent:          #D8D8D6;
+      --sans:            'DM Sans', system-ui, sans-serif;
+    }
+
+    /* ─── LIGHT MODE ─── */
+    body.light {
+      --bg:              #F5F5F3;
+      --text:            #0C0C0C;
+      --text-mid:        #3A3A38;
+      --text-muted:      #888886;
+      --border:          rgba(0,0,0,0.08);
+      --toggle-bg:       rgba(0,0,0,0.05);
+      --toggle-border:   rgba(0,0,0,0.12);
+      --surface:         #EEEEEC;
+      --surface-raised:  #E8E8E6;
+    }
+
+    /* ─── BASE ─── */
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--sans);
+      background: var(--bg);
+      color: var(--text);
+      font-size: 14px;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+      transition: background 0.3s ease, color 0.3s ease;
+    }
+
+    /* ─── NAV ─── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 32px;
+      background: var(--bg);
+      border-bottom: 1px solid var(--border);
+      transition: background 0.3s ease;
+    }
+
+    .nav-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      transition: color 0.2s;
+    }
+    .nav-back:hover { color: var(--text); }
+    .nav-back svg { width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 1.5; }
+
+    .nav-right { display: flex; align-items: center; gap: 16px; }
+
+    .nav-index {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-index:hover { color: var(--text); }
+
+    .theme-toggle {
+      width: 34px; height: 34px;
+      border-radius: 50%;
+      border: 1px solid var(--toggle-border);
+      background: var(--toggle-bg);
+      color: var(--text-muted);
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: background 0.2s, color 0.2s;
+    }
+    .theme-toggle:hover { color: var(--text); background: var(--border); }
+    .toggle-icon {
+      position: relative; width: 12px; height: 12px;
+      border: 1.5px solid currentColor; border-radius: 50%;
+    }
+    .toggle-icon::after {
+      content: ""; position: absolute; inset: 2px 0 0 4px;
+      width: 7px; height: 7px; border-radius: 50%;
+      background: var(--bg); opacity: 0; transition: opacity 0.3s;
+    }
+    body.light .toggle-icon::after { opacity: 1; }
+
+    /* ─── LAYOUT ─── */
+    main {
+      max-width: 640px;
+      margin: 0 auto;
+      padding: 108px 24px 120px;
+    }
+
+    /* ─── HEADER ─── */
+    .cs-header { margin-bottom: 48px; }
+
+    .cs-title {
+      font-size: clamp(22px, 4vw, 28px);
+      font-weight: 500;
+      letter-spacing: -0.01em;
+      line-height: 1.2;
+      margin-bottom: 12px;
+      color: var(--text);
+    }
+
+    .cs-subtitle {
+      font-size: 14px;
+      color: var(--text-mid);
+      line-height: 1.7;
+      max-width: 480px;
+    }
+
+    /* ─── META GRID ─── */
+    .cs-meta {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px 32px;
+      margin-top: 32px;
+      padding-top: 28px;
+      border-top: 1px solid var(--border);
+    }
+
+    .meta-item {}
+    .meta-label {
+      font-size: 9px;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 5px;
+    }
+    .meta-value {
+      font-size: 13px;
+      color: var(--text-mid);
+      line-height: 1.5;
+    }
+
+    /* ─── HERO IMAGE ─── */
+    .cs-hero {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      border-radius: 8px;
+      overflow: hidden;
+      background: var(--surface-raised);
+      border: 1px solid var(--border);
+      margin-bottom: 56px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .cs-hero img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .img-placeholder {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      width: 100%; height: 100%;
+      color: var(--text-muted);
+    }
+    .img-placeholder svg { width: 28px; height: 28px; opacity: 0.4; }
+    .img-placeholder span { font-size: 11px; letter-spacing: 0.06em; opacity: 0.5; }
+
+    /* ─── SECTIONS ─── */
+    .cs-section { margin-bottom: 52px; }
+
+    .section-label {
+      font-size: 9px;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .section-label .label-num {
+      color: var(--text-muted);
+      opacity: 0.5;
+    }
+    .section-label::after {
+      content: "";
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    .cs-body {
+      font-size: 14px;
+      color: var(--text-mid);
+      line-height: 1.85;
+    }
+    .cs-body + .cs-body { margin-top: 16px; }
+
+    /* ─── APPROACH STEPS ─── */
+    .approach-list { list-style: none; margin-top: 4px; }
+
+    .approach-item {
+      display: grid;
+      grid-template-columns: 28px 1fr;
+      gap: 0 14px;
+      padding: 18px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .approach-item:first-child { border-top: 1px solid var(--border); }
+
+    .approach-num {
+      font-size: 9px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      color: var(--text-muted);
+      opacity: 0.5;
+      padding-top: 3px;
+    }
+
+    .approach-content {}
+    .approach-title {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text);
+      margin-bottom: 6px;
+    }
+    .approach-desc {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.75;
+    }
+
+    /* ─── FIGURE / IMAGE BLOCK ─── */
+    .cs-figure {
+      margin: 36px 0;
+      border-radius: 8px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      background: var(--surface-raised);
+    }
+
+    .figure-label {
+      padding: 10px 16px;
+      font-size: 9px;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .figure-img {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--surface);
+    }
+    .figure-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+    .figure-caption {
+      padding: 10px 16px;
+      font-size: 10px;
+      color: var(--text-muted);
+      letter-spacing: 0.04em;
+      text-align: center;
+      border-top: 1px solid var(--border);
+      opacity: 0.7;
+    }
+
+    /* ─── OUTCOMES / STATS ─── */
+    .outcomes-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+      margin-top: 28px;
+    }
+
+    .stat-cell {
+      padding: 24px 20px;
+      background: var(--bg);
+    }
+
+    .stat-cell.full { grid-column: 1 / -1; }
+
+    .stat-number {
+      font-size: 28px;
+      font-weight: 500;
+      letter-spacing: -0.02em;
+      color: var(--text);
+      line-height: 1.1;
+      margin-bottom: 6px;
+    }
+
+    .stat-label {
+      font-size: 12px;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    /* ─── NEXT PROJECT ─── */
+    .cs-next {
+      padding-top: 40px;
+      border-top: 1px solid var(--border);
+      margin-top: 12px;
+    }
+
+    .next-label {
+      font-size: 9px;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 14px;
+    }
+
+    .next-link {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      text-decoration: none;
+      color: var(--text);
+      font-size: 17px;
+      font-weight: 500;
+      transition: color 0.2s, gap 0.2s;
+      gap: 12px;
+    }
+    .next-link:hover { color: var(--text-mid); }
+    .next-link svg {
+      width: 18px; height: 18px;
+      fill: none; stroke: currentColor; stroke-width: 1.5;
+      flex-shrink: 0;
+      transition: transform 0.25s ease;
+    }
+    .next-link:hover svg { transform: translateX(5px); }
+
+    /* ─── RULE ─── */
+    .rule {
+      height: 1px;
+      background: var(--border);
+      margin: 52px 0;
+    }
+
+    /* ─── FOOTER ─── */
+    footer p {
+      font-size: 11px;
+      color: var(--text-muted);
+      letter-spacing: 0.04em;
+    }
+
+    /* ─── SCROLL REVEAL ─── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(16px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ─── MOBILE ─── */
+    @media (max-width: 600px) {
+      nav { padding: 16px 20px; }
+      main { padding: 88px 20px 80px; }
+      .cs-meta { grid-template-columns: 1fr 1fr; gap: 16px 20px; }
+      .outcomes-stats { grid-template-columns: 1fr; }
+      .stat-cell.full { grid-column: 1; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html" class="nav-back">
+      <svg viewBox="0 0 14 14" xmlns="http://www.w3.org/2000/svg">
+        <path d="M9 2L4 7L9 12" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      Index
+    </a>
+    <div class="nav-right">
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+        <span class="toggle-icon" aria-hidden="true"></span>
+      </button>
+    </div>
+  </nav>
+
+  <main>
+
+    <!-- HEADER -->
+    <header class="cs-header reveal">
+      <h1 class="cs-title">Filmmakers Mart</h1>
+      <p class="cs-subtitle">
+        Designing a centralized marketplace for Nigerian filmmakers —
+        research, equipment, crew, and production tooling in one unified platform.
+      </p>
+
+      <div class="cs-meta">
+        <div class="meta-item">
+          <p class="meta-label">Client</p>
+          <p class="meta-value">Filmmakers Mart (NDA)</p>
+        </div>
+        <div class="meta-item">
+          <p class="meta-label">Timeline</p>
+          <p class="meta-value">Q1 – Q3 2025</p>
+        </div>
+        <div class="meta-item">
+          <p class="meta-label">Role</p>
+          <p class="meta-value">Lead Product Designer<br><span style="font-size:11px;opacity:.6;">End-to-end UX/UI</span></p>
+        </div>
+        <div class="meta-item">
+          <p class="meta-label">Output</p>
+          <p class="meta-value">Design System<br>Web Application</p>
+        </div>
+      </div>
+    </header>
+
+    <!-- HERO IMAGE -->
+    <div class="cs-hero reveal">
+      <img src="new_user.png" alt="Filmmakers Mart hero screen"
+           onerror="this.parentElement.innerHTML='<div class=\'img-placeholder\'><svg viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'currentColor\' stroke-width=\'1.2\'><rect x=\'3\' y=\'3\' width=\'18\' height=\'18\' rx=\'2\'/><circle cx=\'8.5\' cy=\'8.5\' r=\'1.5\'/><path d=\'M21 15l-5-5L5 21\'/></svg><span>Hero image</span></div>'">
+    </div>
+
+    <!-- 01 / CONTEXT & CHALLENGE -->
+    <section class="cs-section reveal">
+      <p class="section-label"><span class="label-num">01</span> Context &amp; Challenge</p>
+      <p class="cs-body">
+        Nigeria's film industry — Nollywood — is the second-largest in the world by volume,
+        yet its production ecosystem remained fragmented. Filmmakers were losing days sourcing
+        equipment across WhatsApp groups, coordinating crew through disconnected channels,
+        and navigating an absence of verified vendors.
+      </p>
+      <p class="cs-body">
+        The core challenge: design a platform that could consolidate discovery, booking, and
+        coordination into a single surface without overwhelming users who ranged from
+        independent directors to large studio production teams.
+      </p>
+    </section>
+
+    <!-- 02 / APPROACH -->
+    <section class="cs-section reveal">
+      <p class="section-label"><span class="label-num">02</span> Approach</p>
+
+      <ul class="approach-list">
+        <li class="approach-item">
+          <span class="approach-num">01</span>
+          <div class="approach-content">
+            <p class="approach-title">Discovery &amp; Stakeholder Alignment</p>
+            <p class="approach-desc">
+              Conducted interviews with 14 filmmakers and 8 vendors to map existing workflow pain points,
+              trust signals, and critical booking behaviours across the production lifecycle.
+            </p>
+          </div>
+        </li>
+        <li class="approach-item">
+          <span class="approach-num">02</span>
+          <div class="approach-content">
+            <p class="approach-title">Information Architecture</p>
+            <p class="approach-desc">
+              Built a taxonomy that separated roles — buyer, seller, crew, studio — into distinct
+              but interoperable contexts, forming the navigation backbone and permission model.
+            </p>
+          </div>
+        </li>
+        <li class="approach-item">
+          <span class="approach-num">03</span>
+          <div class="approach-content">
+            <p class="approach-title">Prototyping &amp; Iteration</p>
+            <p class="approach-desc">
+              Low-fidelity wireframes focused on task completion speed before moving to a
+              high-fidelity component system built for developer handoff in Figma.
+            </p>
+          </div>
+        </li>
+      </ul>
+    </section>
+
+    <!-- 03 / THE SOLUTION -->
+    <section class="cs-section reveal">
+      <p class="section-label"><span class="label-num">03</span> The Solution</p>
+      <p class="cs-body">
+        We delivered a modular dashboard built on a strict 8pt grid system. Each user role
+        receives a contextual view — vendors manage listings and inquiries; filmmakers browse,
+        filter, and book in a single session. A unified design language standardises how
+        listings, profiles, and transaction states are presented across all user types.
+      </p>
+
+      <!-- Figure 1 -->
+      <div class="cs-figure">
+        <p class="figure-label">Dashboard View</p>
+        <div class="figure-img">
+          <img src="new_user.png" alt="Dashboard view"
+               onerror="this.parentElement.innerHTML='<div class=\'img-placeholder\'><svg viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'currentColor\' stroke-width=\'1.2\'><rect x=\'3\' y=\'3\' width=\'18\' height=\'18\' rx=\'2\'/><circle cx=\'8.5\' cy=\'8.5\' r=\'1.5\'/><path d=\'M21 15l-5-5L5 21\'/></svg><span>Dashboard view</span></div>'">
+        </div>
+        <p class="figure-caption">Fig 1. Modular dashboard composition</p>
+      </div>
+
+      <!-- Figure 2 -->
+      <div class="cs-figure">
+        <p class="figure-label">Component System</p>
+        <div class="figure-img">
+          <img src="Pricing_2.png" alt="Component system"
+               onerror="this.parentElement.innerHTML='<div class=\'img-placeholder\'><svg viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'currentColor\' stroke-width=\'1.2\'><rect x=\'3\' y=\'3\' width=\'18\' height=\'18\' rx=\'2\'/><circle cx=\'8.5\' cy=\'8.5\' r=\'1.5\'/><path d=\'M21 15l-5-5L5 21\'/></svg><span>Component system</span></div>'">
+        </div>
+        <p class="figure-caption">Fig 2. Core UI components</p>
+      </div>
+    </section>
+
+    <!-- 04 / OUTCOMES -->
+    <section class="cs-section reveal">
+      <p class="section-label"><span class="label-num">04</span> Outcomes</p>
+      <p class="cs-body">
+        The platform launched in beta with a curated cohort of Lagos-based vendors and
+        production companies. Early signals pointed to measurable improvements in
+        time-to-booking and vendor conversion from browsing sessions.
+      </p>
+
+      <div class="outcomes-stats">
+        <div class="stat-cell">
+          <p class="stat-number">60%</p>
+          <p class="stat-label">Reduction in time spent sourcing equipment and crew</p>
+        </div>
+        <div class="stat-cell">
+          <p class="stat-number">3×</p>
+          <p class="stat-label">Increase in vendor inquiry conversion during beta</p>
+        </div>
+        <div class="stat-cell full">
+          <p class="stat-number">100%</p>
+          <p class="stat-label">Adoption rate across the initial beta cohort</p>
+        </div>
+      </div>
+    </section>
+
+    <div class="rule"></div>
+
+    <!-- NEXT PROJECT -->
+    <div class="cs-next reveal">
+      <p class="next-label">Next Project</p>
+      <a href="#" class="next-link">
+        Riltee
+        <svg viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg">
+          <path d="M3 9H15M15 9L9 3M15 9L9 15" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+    </div>
+
+    <div class="rule"></div>
+
+    <footer>
+      <p>&copy; <span id="year"></span> Joshua Ugbeye &middot; Lagos, Nigeria</p>
+    </footer>
+
+  </main>
+
+  <script>
+    // Theme toggle
+    document.getElementById('themeToggle').addEventListener('click', () => {
+      document.body.classList.toggle('light');
+    });
+
+    // Footer year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Scroll reveal
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => entry.target.classList.add('visible'), i * 60);
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.08 });
+
+    reveals.forEach(el => observer.observe(el));
+  </script>
+
+</body>
+</html>
