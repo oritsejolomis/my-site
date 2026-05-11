@@ -1,225 +1,207 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Joshua Ugbeye — Snr Product Designer</title>
-  <link rel="preconnect" href="https://api.fontshare.com">
-  <link
-    href="https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500,700,900&display=swap"
-    rel="stylesheet">
+  <title>Joshua Ugbeye - Product Designer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 </head>
-
 <body>
 
-  <div class="wrapper">
+  <nav>
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+      <span class="toggle-icon" aria-hidden="true"></span>
+    </button>
+  </nav>
 
-    <!-- NAV -->
-    <nav>
-      <div class="nav-right">
-        <ul class="nav-links">
-          <li><a href="#about">About</a></li>
-          <li><a href="#projects">Projects</a></li>
-          <li><a href="#services">Services</a></li>
-        </ul>
-        <a href="#contact" class="nav-cta">Contact</a>
-      </div>
-    </nav>
+  <main>
+    <header class="identity">
+      <p class="identity-name">Joshua Ugbeye</p>
+      <p class="identity-role">Product Designer &amp; Design Engineer</p>
+    </header>
 
-    <!-- HERO -->
-    <div class="card hero-card">
-      <div class="hero-photo">
-        <img src="profile-photo.jpg" alt="Joshua Ugbeye">
+    <div class="featured">
+      <div class="featured-slides">
+        <div class="featured-slide slide-1"></div>
+        <div class="featured-slide slide-2"></div>
+        <div class="featured-slide slide-3"></div>
+        <div class="featured-slide slide-4"></div>
       </div>
-      <div class="hero-info">
-        <span class="hero-status">
-          <span class="status-dot"></span>
-          Available to work
-        </span>
-        <h1 class="hero-name">Joshua Ugbeye</h1>
-        <p class="hero-tagline">Hello, I'm Joshua — a Product Designer &amp; Design Engineer, crafting digital
-          experiences in startup environments for 5+ years.</p>
-        <p class="hero-bio">My modus operandi is turning complex problems into clear, human-centred experiences — from
-          first principle to final pixel.</p>
-        
-        <div class="hero-socials">
-          <a href="mailto:ugbeyejoshua@gmail.com">Email</a>
-          <a href="https://x.com/@oritsejoloms" target="_blank" rel="noreferrer">Twitter</a>
-          <a href="https://www.linkedin.com/in/ugbeyejoshua" target="_blank" rel="noreferrer">LinkedIn</a>
-        </div>
+      <div class="featured-dots">
+        <span class="dot active"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
       </div>
     </div>
 
-    <!-- ABOUT -->
-    <section id="about" class="about-section">
-      <p class="section-heading">About joshua</p>
-      <div class="about-grid">
-        <!-- Top Left: Note Card -->
-        <article class="about-card about-card--note">
-          <div>
-            <p class="sticky-note">Joshua Ugbeye</p>
-          </div>
-          <a href="#about" class="about-cta">About me</a>
-        </article>
-
-        <!-- Top Center: Role Card -->
-        <article class="about-card about-card--role">
-          <div>
-            <p class="card-heading">Snr Product Designer &amp; Design Engineer</p>
-            <p class="card-label">CURRENT ROLE</p>
-          </div>
-        </article>
-
-        <!-- Welcome Card -->
-        <article class="about-card about-card--welcome">
-          <div>
-            <p class="welcome-label">WELCOME</p>
-            <h3 class="welcome-title">Hello, I'm Joshua</h3>
-            <p class="welcome-subtitle">Product designer crafting digital experiences</p>
-            <a href="#about" class="welcome-link">Learn more →</a>
-          </div>
-        </article>
-
-        <!-- Favorite Card -->
-        <article class="about-card about-card--favorite">
-          <div>
-            <p class="favorite-label">FAVORITE</p>
-            <h3 class="favorite-title">Design Tools</h3>
-            <p class="favorite-subtitle">Figma, Sketch, Adobe Creative Suite</p>
-            <a href="#projects" class="favorite-link">View work →</a>
-          </div>
-        </article>
-
-        <!-- Top Right: Photo Card (spans 2 rows) -->
-        <article class="about-card about-card--photo">
-          <img src="profile-photo.jpg" alt="Joshua Ugbeye" />
-          <p class="photo-caption">picture from my trip to Benin republic</p>
-        </article>
-
-        <!-- Bottom Left: Learning Card (spans 2 columns) -->
-        <article class="about-card about-card--learning">
-          <div>
-            <p class="learning-title">Constantly Learning</p>
-            <p class="learning-copy">Outside of client work, I'm studying emerging web patterns, experimenting with
-              agentic workflows, and sharpening my craft.</p>
-            <a href="#projects" class="learning-link">View technical stack →</a>
-          </div>
-        </article>
-
-        <!-- Bottom Right: Building Card -->
-        <article class="about-card about-card--building">
-          <div>
-            <p class="building-title">Building scalable &amp; performant web applications</p>
-            <p class="building-copy">I work across React, TypeScript, and modern backend stacks to create user-centered digital experiences.</p>
-            <a href="#" class="building-link">Read my logs →</a>
-          </div>
-        </article>
-      </div>
+    <section class="bio">
+      <p>
+        I'm passionate about designing products that are highly functional,
+        human-centred, and enjoyable to use. For more than 5 years, I have
+        designed and built digital experiences for mobile and web - across
+        fintech, productivity, and consumer apps.
+      </p>
+      <p>
+        I'm currently open to a Senior Product Designer or Design Engineer role,
+        working with teams building ambitious products. Based in Lagos, Nigeria.
+        Available for remote work.
+      </p>
     </section>
 
+    <div class="rule"></div>
 
-    <!-- PROJECTS -->
-    <section id="projects" class="projects-section">
-      <p class="section-heading">My latest work</p>
-      <div class="projects-grid">
+    <section id="work" class="work">
+      <div class="work-heading">
+        <p class="section-title">Work</p>
+      </div>
 
-        <!-- LEFT COLUMN -->
-        <div class="projects-col projects-col--left">
+      <div class="work-showcase">
+        <ul class="folio-list" aria-label="Selected work">
+          <li class="folio-item" data-work-index="0">
+            <a href="#">
+              <span class="folio-title">Filmmakers Mart</span>
+              <span class="folio-meta">Research &middot; Dashboard &middot; Development &middot; 2025</span>
+            </a>
+          </li>
 
-          <div class="project-item">
-            <div class="project-card">
-              <div class="project-thumb" style="background: #D4E4C8;"></div>
-            </div>
-            <div class="project-info">
-              <h3>Filmmakers Mart &nbsp;→</h3>
-              <p>Research, Dashboard, Development</p>
-            </div>
-          </div>
+          <li class="folio-item" data-work-index="1">
+            <a href="#">
+              <span class="folio-title">Riltee</span>
+              <span class="folio-meta">Website &middot; Dashboard &middot; Development &middot; 2025</span>
+            </a>
+          </li>
 
-          <div class="project-item">
-            <div class="project-card">
-              <div class="project-thumb" style="background: #E4D4C8;"></div>
-            </div>
-            <div class="project-info">
-              <h3>Unorthodox Clan &nbsp;→</h3>
-              <p>Website, Branding, Development</p>
-            </div>
-          </div>
+          <li class="folio-item" data-work-index="2">
+            <a href="#">
+              <span class="folio-title">Unorthodox Clan</span>
+              <span class="folio-meta">Website &middot; Branding &middot; Development &middot; 2024</span>
+            </a>
+          </li>
 
-          <div class="project-item">
-            <div class="project-card">
-              <div class="project-thumb" style="background: #E4E4C8;"></div>
-            </div>
-            <div class="project-info">
-              <h3>Coming Soon &nbsp;→</h3>
-              <p>Website, Dashboard, Development</p>
-            </div>
-          </div>
+          <li class="folio-item" data-work-index="3">
+            <a href="#">
+              <span class="folio-title">Focus App</span>
+              <span class="folio-meta">Product Design &middot; Prototyping &middot; 2024</span>
+            </a>
+          </li>
+        </ul>
 
+        <div class="folio-preview" aria-hidden="true">
+          <div class="folio-frame frame-1"><span>Filmmakers Mart</span></div>
+          <div class="folio-frame frame-2"><span>Riltee</span></div>
+          <div class="folio-frame frame-3"><span>Unorthodox Clan</span></div>
+          <div class="folio-frame frame-4"><span>Focus App</span></div>
         </div>
-
-        <!-- RIGHT COLUMN (starts offset lower) -->
-        <div class="projects-col projects-col--right">
-
-          <div class="project-item">
-            <div class="project-card">
-              <div class="project-thumb" style="background: #C8D4E4;"></div>
-            </div>
-            <div class="project-info">
-              <h3>Riltee &nbsp;→</h3>
-              <p>Website, Dashboard, Development</p>
-            </div>
-          </div>
-
-          <div class="project-item">
-            <div class="project-card">
-              <div class="project-thumb" style="background: #D4C8E4;"></div>
-            </div>
-            <div class="project-info">
-              <h3>Focus App &nbsp;→</h3>
-              <p>Product Design, Prototyping</p>
-            </div>
-          </div>
-
-        </div>
-
       </div>
     </section>
 
+    <div class="rule"></div>
 
-
-    <!-- SERVICES -->
-    <section id="services" class="services-section">
-      <p class="section-heading">Services</p>
-      <div class="services-pile">
-        <span class="svc-tag" id="svc-1">✧ branding</span>
-        <span class="svc-tag" id="svc-2">⚲ interface</span>
-        <span class="svc-tag" id="svc-3">⨁ website</span>
-        <span class="svc-tag" id="svc-4">⚡ animation</span>
-        <span class="svc-tag" id="svc-5">✑ illustration</span>
-      </div>
+    <section id="about" class="about">
+      <p class="section-title">About</p>
+      <p class="about-body">
+        I'm a designer who builds. My direction is design engineering - where the
+        craft of design and the precision of code are the same discipline.
+        I work across the full stack from early research to shipped, polished interfaces.
+        Currently sharpening skills in Next.js, GSAP, and motion design.
+      </p>
     </section>
 
-    <!-- FOOTER -->
-    <footer id="contact">
-      <div class="footer-left">
-        <p class="footer-heading">Let's build something.</p>
-        <p class="footer-sub">Open for remote full-time roles &amp; freelance projects.</p>
-      </div>
-      <div class="footer-links">
-        <a href="mailto:hello@joshuaugbeye.com" class="footer-link">✉ Email</a>
-        <a href="https://linkedin.com/in/joshuaugbeye" target="_blank" class="footer-link">LinkedIn</a>
-        <a href="https://twitter.com/joshuaugbeye" target="_blank" class="footer-link">Twitter / X</a>
-        <a href="/resume.pdf" target="_blank" class="footer-link">Résumé ↓</a>
-      </div>
+    <div class="rule"></div>
+
+    <section class="connect">
+      <p class="section-title">Connect</p>
+      <ul class="connect-list">
+        <li>
+          <a href="mailto:ugbeyejoshua@gmail.com">
+            email <span class="connect-desc">- want to collaborate?</span>
+          </a>
+        </li>
+        <li>
+          <a href="https://www.linkedin.com/in/ugbeyejoshua/?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3BC5BY95lnTXumRljpb7%2FaUw%3D%3D" target="_blank" rel="noopener noreferrer">
+            linkedin <span class="connect-desc">- professional side</span>
+          </a>
+        </li>
+        <li>
+          <a href="https://x.com/oritsejoloms" target="_blank" rel="noopener noreferrer">
+            x (twitter) <span class="connect-desc">- thoughts and process</span>
+          </a>
+        </li>
+        <li>
+          <a href="/resume.pdf" target="_blank" rel="noopener noreferrer">
+            resume <span class="connect-desc">- download CV</span>
+          </a>
+        </li>
+      </ul>
+    </section>
+
+    <div class="rule"></div>
+
+    <footer>
+      <p>&copy; <span id="year">2026</span> Joshua Ugbeye &middot; Lagos, Nigeria</p>
     </footer>
+  </main>
 
-  </div><!-- end .wrapper -->
+  <script>
+    const slides = document.querySelectorAll('.featured-slide');
+    const dots = document.querySelectorAll('.dot');
+    let current = 0;
 
-</div>
+    slides[0].classList.add('active');
+
+    setInterval(() => {
+      slides[current].classList.remove('active');
+      dots[current].classList.remove('active');
+      current = (current + 1) % slides.length;
+      slides[current].classList.add('active');
+      dots[current].classList.add('active');
+    }, 3000);
+
+    const workItems = document.querySelectorAll('.folio-item');
+    const workFrames = document.querySelectorAll('.folio-frame');
+
+    function setActiveWork(index) {
+      workItems.forEach((item, itemIndex) => {
+        const isActive = itemIndex === index;
+        item.classList.toggle('is-active', isActive);
+        item.querySelector('a').toggleAttribute('aria-current', isActive);
+      });
+
+      workFrames.forEach((frame, frameIndex) => {
+        frame.classList.toggle('is-active', frameIndex === index);
+      });
+    }
+
+    function clearActiveWork() {
+      workItems.forEach((item) => {
+        item.classList.remove('is-active');
+        item.querySelector('a').removeAttribute('aria-current');
+      });
+
+      workFrames.forEach((frame) => {
+        frame.classList.remove('is-active');
+      });
+    }
+
+    workItems.forEach((item) => {
+      const index = Number(item.dataset.workIndex);
+      item.addEventListener('mouseenter', () => setActiveWork(index));
+      item.addEventListener('mouseleave', clearActiveWork);
+      item.addEventListener('focusin', () => setActiveWork(index));
+      item.addEventListener('focusout', clearActiveWork);
+    });
+
+    const toggle = document.getElementById('themeToggle');
+    toggle.addEventListener('click', () => {
+      document.body.classList.toggle('light');
+    });
+
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
 
 </body>
-
 </html>
