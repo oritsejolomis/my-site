@@ -428,16 +428,16 @@
 
     <!-- HEADER -->
     <header class="cs-header reveal">
-      <h1 class="cs-title">Filmmakers Mart</h1>
+      <h1 class="cs-title">AI-Assisted Location Discovery</h1>
       <p class="cs-subtitle">
-        Designing a centralized marketplace for Nigerian filmmakers —
-        research, equipment, crew, and production tooling in one unified platform.
+        Designing an intent-driven recommendation workflow for film production
+        <!-- research, equipment, crew, and production tooling in one unified platform. -->
       </p>
 
       <div class="cs-meta">
         <div class="meta-item">
           <p class="meta-label">Client</p>
-          <p class="meta-value">Filmmakers Mart (NDA)</p>
+          <p class="meta-value">Filmmakers Mart</p>
         </div>
         <div class="meta-item">
           <p class="meta-label">Timeline</p>
@@ -445,7 +445,7 @@
         </div>
         <div class="meta-item">
           <p class="meta-label">Role</p>
-          <p class="meta-value">Lead Product Designer<br><span style="font-size:11px;opacity:.6;">End-to-end UX/UI</span></p>
+          <p class="meta-value">Snr. Product Designer</p>
         </div>
         <div class="meta-item">
           <p class="meta-label">Output</p>
@@ -460,69 +460,96 @@
            onerror="this.parentElement.innerHTML='<div class=\'img-placeholder\'><svg viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'currentColor\' stroke-width=\'1.2\'><rect x=\'3\' y=\'3\' width=\'18\' height=\'18\' rx=\'2\'/><circle cx=\'8.5\' cy=\'8.5\' r=\'1.5\'/><path d=\'M21 15l-5-5L5 21\'/></svg><span>Hero image</span></div>'">
     </div>
 
-    <!-- 01 / CONTEXT & CHALLENGE -->
+    <!-- 01 / The Problem -->
     <section class="cs-section reveal">
-      <p class="section-label"><span class="label-num">01</span> Context &amp; Challenge</p>
+      <p class="section-label"><span class="label-num">01</span> The Problem </p>
       <p class="cs-body">
-        Nigeria's film industry — Nollywood — is the second-largest in the world by volume,
-        yet its production ecosystem remained fragmented. Filmmakers were losing days sourcing
-        equipment across WhatsApp groups, coordinating crew through disconnected channels,
-        and navigating an absence of verified vendors.
-      </p>
-      <p class="cs-body">
-        The core challenge: design a platform that could consolidate discovery, booking, and
-        coordination into a single surface without overwhelming users who ranged from
-        independent directors to large studio production teams.
+        Film production runs on creative intent. A director knows they want a location that feels isolated, industrial, post-Soviet — not a location tagged
+“warehouse.”
+The existing discovery tool only supported rigid filter-based search: category tags, location type, availability. Users had to translate creative ideas into database categories before they could even begin exploring.
+ 
+<br>This created a structural mismatch:</br>
+<br> —  The system was optimised for filtering, not creative decision-making </br>
+<br> —  Results were technically accurate but aesthetically irrelevant </br>
+<br> —  Discovery felt transactional — users got matches, not insight </br>
+<br> —  There was no way to express intent like mood, tone, or scene context </br>
+ 
+ <br> The core issue was not the filters themselves. It was that filtering was the only mode of discovery available. </br>
+
+
       </p>
     </section>
 
-    <!-- 02 / APPROACH -->
+    <!-- 02 / Key Decision -->
     <section class="cs-section reveal">
-      <p class="section-label"><span class="label-num">02</span> Approach</p>
+      <p class="section-label"><span class="label-num">02</span> Key Decision </p>
+      <p class="cs-body">
+        Rather than improving the filter interface, I shifted the product direction toward AI-assisted contextual recommendations.
+<br> goal: let the system interpret production intent, not just match keywords.</br>
+ 
+<br>Instead of matching locations by tags alone, the recommendation engine would evaluate:</br>
+<br> —  Aesthetic and visual similarity </br> — Emotional tone and scene context 
+—  Environmental fit (texture, density, atmosphere).
+<br> —  Production practicality: lighting, accessibility, scale </br>
+ 
+ <br> This reframed the experience from:</br>
+“Find locations by category”   →   “Discover locations that fit the scene.”
+  </p>
+    </section>
 
+<!-- 03 / What I Deliberately Avoided -->
+    <section class="cs-section reveal">
+      <p class="section-label"><span class="label-num">03</span> What I Deliberately Avoided</p>
+      <p class="cs-body">
+        The obvious move was a conversational chat interface. I rejected it. 
+        <br> A chat interface optimises for one recommendation at a time. Location scouting requires parallel consideration.</br>
+
+<br>A chatbot felt modern and AI-forward on the surface, but it would have replaced structure that filmmakers still depend on:</br>
+<br> — Structured browsing to visually compare multiple options </br> — Manual control over discovery — not being funnelled toward a single output.
+ 
+ <br> My decision:</br> Design AI as an enhancement layer on top of a structured workflow, not a replacement for it. Intelligence without removing control.
+      </p>
+    </section>
+
+    <!-- 04 / Designed for Trust -->
+    <section class="cs-section reveal">
+      <p class="section-label"><span class="label-num">04</span> Designed for Trust</p>
+
+      <p class="cs-body">
+        I built explainability directly into the recommendation interface through three patterns:
+        </p> 
       <ul class="approach-list">
         <li class="approach-item">
           <span class="approach-num">01</span>
           <div class="approach-content">
-            <p class="approach-title">Discovery &amp; Stakeholder Alignment</p>
+            <p class="approach-title">Why this recommendation?</p>
             <p class="approach-desc">
-              Conducted interviews with 14 filmmakers and 8 vendors to map existing workflow pain points,
-              trust signals, and critical booking behaviours across the production lifecycle.
+              Each result included a contextual breakdown: visual tone similarity, architectural relevance, environmental fit, production practicality. 
+              Users could see what the system was evaluating, not just what it returned.
             </p>
           </div>
         </li>
         <li class="approach-item">
           <span class="approach-num">02</span>
           <div class="approach-content">
-            <p class="approach-title">Information Architecture</p>
+            <p class="approach-title">Confidence Indicators</p>
             <p class="approach-desc">
-              Built a taxonomy that separated roles — buyer, seller, crew, studio — into distinct
-              but interoperable contexts, forming the navigation backbone and permission model.
+              A visible signal of how strong or uncertain the match was.
+              A low-confidence result shown clearly is more trustworthy than a confident-looking result with no basis.
             </p>
           </div>
         </li>
         <li class="approach-item">
           <span class="approach-num">03</span>
           <div class="approach-content">
-            <p class="approach-title">Prototyping &amp; Iteration</p>
+            <p class="approach-title">Similar Alternatives</p>
             <p class="approach-desc">
-              Low-fidelity wireframes focused on task completion speed before moving to a
-              high-fidelity component system built for developer handoff in Figma.
+              Rather than pushing one result, the system encouraged exploration.
+              This reduced the pressure on any single recommendation to be perfect.
             </p>
           </div>
         </li>
       </ul>
-    </section>
-
-    <!-- 03 / THE SOLUTION -->
-    <section class="cs-section reveal">
-      <p class="section-label"><span class="label-num">03</span> The Solution</p>
-      <p class="cs-body">
-        We delivered a modular dashboard built on a strict 8pt grid system. Each user role
-        receives a contextual view — vendors manage listings and inquiries; filmmakers browse,
-        filter, and book in a single session. A unified design language standardises how
-        listings, profiles, and transaction states are presented across all user types.
-      </p>
 
       <!-- Figure 1 -->
       <div class="cs-figure">
@@ -543,6 +570,22 @@
         </div>
         <p class="figure-caption">Fig 2. Core UI components</p>
       </div>
+
+    </section>
+
+    <!-- 05 / System Thinking -->
+    <section class="cs-section reveal">
+      <p class="section-label"><span class="label-num">05</span> System Thinking</p>
+      <p class="cs-body">
+        Beyond the UI, I designed for the full range of system states — not just the happy path.
+ 
+<br> —  Low-confidence matches: what does the interface show when the AI is uncertain?</br>
+—  Empty result handling: fallback logic rather than dead ends
+<br> —  Structured AI reasoning: how to surface the logic without overwhelming the interface. </br>
+—  Scalable patterns: recommendation structure built for future data and use cases
+      </p>
+
+      
     </section>
 
     <!-- 04 / OUTCOMES -->
