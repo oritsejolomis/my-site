@@ -415,7 +415,7 @@
       <svg viewBox="0 0 14 14" xmlns="http://www.w3.org/2000/svg">
         <path d="M9 2L4 7L9 12" stroke-linecap="round" stroke-linejoin="round"/>
       </svg>
-      Index
+      Back to home page
     </a>
     <div class="nav-right">
       <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
@@ -449,7 +449,7 @@
         </div>
         <div class="meta-item">
           <p class="meta-label">Output</p>
-          <p class="meta-value">Design System<br>Web Application</p>
+          <p class="meta-value">Interactive Prototype<br>Web Application</p>
         </div>
       </div>
     </header>
@@ -466,11 +466,11 @@
       <p class="cs-body">
         Film production runs on creative intent. A director knows they want a location that feels isolated, industrial, post-Soviet — not a location tagged
 “warehouse.”
-The existing discovery tool only supported rigid filter-based search: category tags, location type, availability. Users had to translate creative ideas into database categories before they could even begin exploring.
+The existing discovery tool only supported rigid filter-based search: category tags, location type, availability. <br>Users had to translate creative ideas into database categories before they could even begin exploring.</br>
  
-<br>This created a structural mismatch:</br>
+<strong>This created a structural mismatch:</strong>
 <br> —  The system was optimised for filtering, not creative decision-making </br>
-<br> —  Results were technically accurate but aesthetically irrelevant </br>
+ —  Results were technically accurate but aesthetically irrelevant
 <br> —  Discovery felt transactional — users got matches, not insight </br>
 —  There was no way to express intent like mood, tone, or scene context
  
@@ -485,16 +485,25 @@ The existing discovery tool only supported rigid filter-based search: category t
       <p class="section-label"><span class="label-num">02</span> Key Decision </p>
       <p class="cs-body">
         Rather than improving the filter interface, I shifted the product direction toward AI-assisted contextual recommendations.
-<br> goal: let the system interpret production intent, not just match keywords.</br>
+<br> <strong>Goal:</strong> Let the system interpret production intent, not just match keywords.</br>
  
-<br>Instead of matching locations by tags alone, the recommendation engine would evaluate:</br>
+Instead of matching locations by tags alone, the recommendation engine would evaluate:
 <br> —  Aesthetic and visual similarity </br> — Emotional tone and scene context 
-—  Environmental fit (texture, density, atmosphere).
-<br> —  Production practicality: lighting, accessibility, scale </br>
- 
- <br> This reframed the experience from:</br>
-“Find locations by category”   →   “Discover locations that fit the scene.”
+<br> —  Environmental fit (texture, density, atmosphere).</br>
+ —  Production practicality: lighting, accessibility, scale
+<br> <strong>This reframed the experience from:</strong>  “Find locations by category”   →   “Discover locations that fit the scene.” </br>
   </p>
+
+   <!-- Figure 1 -->
+      <div class="cs-figure">
+        <p class="figure-label">Dashboard View</p>
+        <div class="figure-img">
+          <img src="new_user.png" alt="Dashboard view"
+               onerror="this.parentElement.innerHTML='<div class=\'img-placeholder\'><svg viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'currentColor\' stroke-width=\'1.2\'><rect x=\'3\' y=\'3\' width=\'18\' height=\'18\' rx=\'2\'/><circle cx=\'8.5\' cy=\'8.5\' r=\'1.5\'/><path d=\'M21 15l-5-5L5 21\'/></svg><span>Dashboard view</span></div>'">
+        </div>
+        <p class="figure-caption">Fig 1. Modular dashboard composition</p>
+      </div>
+      
     </section>
 
 <!-- 03 / What I Deliberately Avoided -->
@@ -502,12 +511,12 @@ The existing discovery tool only supported rigid filter-based search: category t
       <p class="section-label"><span class="label-num">03</span> What I Deliberately Avoided</p>
       <p class="cs-body">
         The obvious move was a conversational chat interface. I rejected it. 
-        <br> A chat interface optimises for one recommendation at a time. Location scouting requires parallel consideration.</br>
-
-<br>A chatbot felt modern and AI-forward on the surface, but it would have replaced structure that filmmakers still depend on:</br>
-<br> — Structured browsing to visually compare multiple options </br> — Manual control over discovery — not being funnelled toward a single output.
- 
- <br> My decision:</br> Design AI as an enhancement layer on top of a structured workflow, not a replacement for it. Intelligence without removing control.
+        <br> A chat interface optimises for one recommendation at a time. Conventional location scouting requires parallel consideration.</br>
+<br> A chatbot feels modern and AI-forward on the surface, but it would have replaced structure that filmmakers still depend on: </br>
+ — Structured browsing to visually compare multiple options
+<br> — Manual control over discovery </br> 
+— not being funnelled toward a single output.
+ <br> <strong>My decision:</strong> Design AI as an enhancement layer on top of a structured workflow, not a replacement for it. Intelligence without removing control.</br>
       </p>
     </section>
 
@@ -584,19 +593,30 @@ The existing discovery tool only supported rigid filter-based search: category t
 <br> —  Structured AI reasoning: how to surface the logic without overwhelming the interface. </br>
 —  Scalable patterns: recommendation structure built for future data and use cases
       </p>
-
+<!-- Figure 1 -->
+      <div class="cs-figure">
+        <p class="figure-label">Dashboard View</p>
+        <div class="figure-img">
+          <img src="new_user.png" alt="Dashboard view"
+               onerror="this.parentElement.innerHTML='<div class=\'img-placeholder\'><svg viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'currentColor\' stroke-width=\'1.2\'><rect x=\'3\' y=\'3\' width=\'18\' height=\'18\' rx=\'2\'/><circle cx=\'8.5\' cy=\'8.5\' r=\'1.5\'/><path d=\'M21 15l-5-5L5 21\'/></svg><span>Dashboard view</span></div>'">
+        </div>
+        <p class="figure-caption">Fig 1. Modular dashboard composition</p>
+      </div>
       
     </section>
 
-    <!-- 04 / OUTCOMES -->
+    <!-- 04 / Where this Ended -->
     <section class="cs-section reveal">
-      <p class="section-label"><span class="label-num">04</span> Outcomes</p>
+      <p class="section-label"><span class="label-num">04</span> Where this Ended </p>
       <p class="cs-body">
-        The platform launched in beta with a curated cohort of Lagos-based vendors and
-        production companies. Early signals pointed to measurable improvements in
-        time-to-booking and vendor conversion from browsing sessions.
+        The design direction was established and in active development when I was laid off.
+        Engineering alignment had been reached. The feature did not ship. <br> What I can speak to directly:</br>
+—  The product reasoning behind shifting from filter to intent
+<br> —  The design decisions and what I rejected and why</br>
+—  The system behaviour logic and edge case thinking
+<br>—  The trust design approach and explainability patterns </br>
       </p>
-
+<!--
       <div class="outcomes-stats">
         <div class="stat-cell">
           <p class="stat-number">60%</p>
@@ -614,7 +634,7 @@ The existing discovery tool only supported rigid filter-based search: category t
     </section>
 
     <div class="rule"></div>
-
+-->
     <!-- NEXT PROJECT -->
     <div class="cs-next reveal">
       <p class="next-label">Next Project</p>
