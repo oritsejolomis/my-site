@@ -9,7 +9,7 @@
    5.  Nav + Toggle
    6.  Main layout
    7.  Identity
-   8.  Featured (wipe transition)
+   8.  Featured
    9.  Bio
    10. Rule
    11. Work
@@ -99,7 +99,6 @@ nav {
   background: var(--border);
 }
 
-/* Sun/moon icon drawn in CSS */
 .toggle-icon {
   position: relative;
   width: 13px;
@@ -150,7 +149,7 @@ main {
 }
 
 
-/* ─── 8. FEATURED — wipe transition ─── */
+/* ─── 8. FEATURED — instant cut, no transition ─── */
 .featured {
   margin-bottom: 40px;
 }
@@ -160,7 +159,7 @@ main {
   width: 100%;
   aspect-ratio: 16 / 9;
   border-radius: 8px;
-  overflow: hidden;            /* clips the wipe at the edges */
+  overflow: hidden;
   background: #161616;
 }
 
@@ -168,17 +167,16 @@ body.light .featured-slides {
   background: #E0E0DE;
 }
 
-/* Every slide stacks on top of each other */
+/* All slides hidden by default */
 .featured-slide {
   position: absolute;
   inset: 0;
-  /* Start clipped off to the right — invisible by default */
-  clip-path: inset(0 100% 0 0);
+  display: none;        /* hidden — no animation, no clip-path */
 }
 
-/* Active slide is fully visible */
+/* Only the active slide is shown — instant, no transition */
 .featured-slide.is-active {
-  clip-path: inset(0 0% 0 0);
+  display: block;
 }
 
 .featured-slide img {
@@ -304,7 +302,6 @@ body.light .featured-slides {
   transition: opacity 0.35s ease, transform 0.35s ease;
 }
 
-/* Each frame gets a slightly different size and tilt */
 .frame-1 {
   width: min(100%, 145px);
   aspect-ratio: 4 / 5;
@@ -336,11 +333,9 @@ body.light .featured-slides {
   display: block;
 }
 
-/* Active frame lifts and straightens */
 .folio-frame.is-active {
   opacity: 1;
   z-index: 5;
-  filter: saturate(1.1);
 }
 
 .frame-1.is-active { transform: translate(-50%, -50%) rotate(0deg) translateY(-4px) scale(1.01); }
@@ -429,19 +424,9 @@ body.light .tool-item {
   gap: 12px;
 }
 
-.connect-row {
-  display: flex;
-  align-items: center;
-}
-
-.connect-copy-row {
-  flex-wrap: wrap;
-  gap: 10px 16px;
-}
-
-.connect-icon-row {
-  gap: 12px;
-}
+.connect-row { display: flex; align-items: center; }
+.connect-copy-row { flex-wrap: wrap; gap: 10px 16px; }
+.connect-icon-row { gap: 12px; }
 
 .connect-copy-row a {
   min-height: 34px;
@@ -489,10 +474,8 @@ body.light .connect-icon-row a {
 
 .sr-only {
   position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
   overflow: hidden;
   clip: rect(0, 0, 0, 0);
   white-space: nowrap;
@@ -518,54 +501,21 @@ footer p {
 /* ─── 17. MOBILE ─── */
 @media (max-width: 860px) {
   .work { min-height: 0; }
-
-  .work-showcase {
-    grid-template-columns: 1fr;
-    gap: 26px;
-  }
-
+  .work-showcase { grid-template-columns: 1fr; gap: 26px; }
   .folio-preview { display: none; }
 }
 
 @media (max-width: 600px) {
-  main {
-    padding: 72px 20px 80px;
-  }
-
-  nav {
-    top: 20px;
-    right: 20px;
-  }
-
+  main { padding: 72px 20px 80px; }
+  nav { top: 20px; right: 20px; }
   .work-heading { margin-bottom: 24px; }
 
-  .folio-item a {
-    gap: 6px;
-    padding: 10px 0;
-  }
-
+  .folio-item a { gap: 6px; padding: 10px 0; }
   .folio-item.is-active a,
-  .folio-item a:hover {
-    transform: none;
-  }
-
-  .folio-meta {
-    opacity: 1;
-    transform: none;
-  }
+  .folio-item a:hover { transform: none; }
+  .folio-meta { opacity: 1; transform: none; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .featured-slide {
-    clip-path: none !important;
-    transition: none !important;
-  }
-
-  .featured-slide:not(.is-active) {
-    display: none;
-  }
-
-  .tools-track {
-    animation: none;
-  }
+  .tools-track { animation: none; }
 }

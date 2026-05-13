@@ -459,7 +459,9 @@
       <img src="new_user.png" alt="Filmmakers Mart hero screen"
            onerror="this.parentElement.innerHTML='<div class=\'img-placeholder\'><svg viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'currentColor\' stroke-width=\'1.2\'><rect x=\'3\' y=\'3\' width=\'18\' height=\'18\' rx=\'2\'/><circle cx=\'8.5\' cy=\'8.5\' r=\'1.5\'/><path d=\'M21 15l-5-5L5 21\'/></svg><span>Hero image</span></div>'">
     </div>
+    <section class="cs-section reveal">
     <p class="meta-value">Note: This feature was in active development when I was laid off. The design direction was established and aligned with engineering. I did not complete formal user research or validation testing. This case study covers the design reasoning and product decisions — not validated outcomes.</p>
+</section>
 
     <!-- 01 / The Problem -->
     <section class="cs-section reveal">
@@ -469,11 +471,11 @@
 “warehouse.”
 The existing discovery tool only supported rigid filter-based search: category tags, location type, availability. <br>Users had to translate creative ideas into database categories before they could even begin exploring.</br>
  
-<strong>This created a structural mismatch:</strong>
-<br> —  The system was optimised for filtering, not creative decision-making </br>
- —  Results were technically accurate but aesthetically irrelevant
-<br> —  Discovery felt transactional — users got matches, not insight </br>
-—  There was no way to express intent like mood, tone, or scene context
+<br> <strong>This created a structural mismatch:</strong> </br>
+—  The system was optimised for filtering, not creative decision-making
+<br> —  Results were technically accurate but aesthetically irrelevant </br>
+ —  Discovery felt transactional — users got matches, not insight
+<br> —  There was no way to express intent like mood, tone, or scene context </br>
  
  <br> The core issue was not the filters themselves. It was that filtering was the only mode of discovery available. </br>
 
@@ -488,10 +490,10 @@ The existing discovery tool only supported rigid filter-based search: category t
         Rather than improving the filter interface, I shifted the product direction toward AI-assisted contextual recommendations.
 <br> <strong>Goal:</strong> Let the system interpret production intent, not just match keywords.</br>
  
-Instead of matching locations by tags alone, the recommendation engine would evaluate:
-<br> —  Aesthetic and visual similarity </br> — Emotional tone and scene context 
-<br> —  Environmental fit (texture, density, atmosphere).</br>
- —  Production practicality: lighting, accessibility, scale
+<br> Instead of matching locations by tags alone, the recommendation engine would evaluate: </br>
+ —  Aesthetic and visual similarity  <br> — Emotional tone and scene context </br>
+ —  Environmental fit (texture, density, atmosphere).
+<br> —  Production practicality: lighting, accessibility, scale </br>
 <br> <strong>This reframed the experience from:</strong>  “Find locations by category”   →   “Discover locations that fit the scene.” </br>
   </p>
 
@@ -517,7 +519,8 @@ Instead of matching locations by tags alone, the recommendation engine would eva
  — Structured browsing to visually compare multiple options
 <br> — Manual control over discovery </br> 
 — not being funnelled toward a single output.
- <br> <strong>My decision:</strong> Design AI as an enhancement layer on top of a structured workflow, not a replacement for it. Intelligence without removing control.</br>
+ <br> <strong>My objective </strong> was to design AI as an enhancement layer on top of a structured workflow,
+ not a replacement for it. Intelligence without removing control.</br>
       </p>
     </section>
 
